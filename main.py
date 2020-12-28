@@ -19,15 +19,17 @@ model = "saved_models/" + style_name + ".pth"
 input_image = "images/content-images/" + img
 output_image = "images/output-images" + style_name + "-" + img
 
-st.write("### Source Image:")
-image = Image.open(input_image)
-st.image(image, width=200)
+left_column, right_column = st.beta_columns(2)
 
-clicked = st.button("Stylize")
+left_column.write("### Source Image:")
+image = Image.open(input_image)
+left_column.image(image, width=200)
+
+clicked = left_column.button("Stylize")
 
 if clicked:
     model = style.load_model(model)
     style.stylize(model, input_image, output_image)
-    st.write("### Output Image:")
+    right_column.write("### Output Image:")
     image = Image.open(output_image)
-    st.image(image, width=200)
+    right_column.image(image, width=200)
