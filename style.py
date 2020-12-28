@@ -17,7 +17,7 @@ from transformer_net import TransformerNet
 from vgg import Vgg16
 import streamlit as st
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 
 @st.cache
 def load_model(model_path):
